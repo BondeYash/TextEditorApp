@@ -5,14 +5,26 @@ export default function TextArea(props) {
   const handleUpClick = ()=> {
     let newtext = text.toUpperCase()
     setText(newtext)
-    props.showalert ("Coverted to UpperCase" , "success")
+    if (text.length>0){
+
+      props.showalert ("Coverted to UpperCase" , "success")
+    }
+    else {
+      props.showalert ("Enter Text To Convert " , "danger")
+    }
     // console.log("Click")
   }
 
   const handleLwClick = ()=> {
     let newtext = text.toLowerCase()
     setText(newtext)
-    props.showalert ("Converted to LowerCase" , "success")
+    if (text.length>0) {
+
+      props.showalert ("Converted to LowerCase" , "success")
+    }
+    else {
+      props.showalert ("Enter Text to Convert " , "danger")
+    }
   }
 
   const handleonChange = (event)=> {
@@ -23,21 +35,39 @@ export default function TextArea(props) {
   const clearText = ()=> {
     let newText = ""
     setText(newText)
-    props.showalert ("Text Cleared" , "success")
+    if (text.length >0){
+
+      props.showalert ("Text Cleared" , "success")
+    }
+    else {
+      props.showalert ("Please Enter Text !!" , "danger")
+    }
   }
 
   const handleCopy = ()=> {
     let newText = document.getElementById("myBox")
     newText.select()
     navigator.clipboard.writeText(newText.value)
-    props.showalert ("Text Copied to ClipBoard" , "success")
+    if (text.length >0) {
+
+      props.showalert ("Text Copied to ClipBoard" , "success")
+    }
+    else {
+      props.showalert ("Please Enter Some Text " , "danger")
+    }
   }
 
   const removeExtraSpace = ()=> {
     let newText = text.split(/[ ]+/)
     setText(newText.join(" "))
-    props.showalert ("Extra Spaces Removed" , "success")
-    
+    if (text.length>0){
+
+      props.showalert ("Extra Spaces Removed" , "success")
+    }
+    else {
+      props.showalert ("Please Enter Some Text First to Remove Spaces" , "danger")
+    }
+
   }
 
   const [text , setText] = useState("")
